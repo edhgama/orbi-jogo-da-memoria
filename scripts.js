@@ -36,7 +36,7 @@ let lightColor = (element, tempo) => {
 let checkOrder = () => {
     for(let inc in clickedOrder){
         if(clickedOrder[inc] != order[i]){
-            lose();
+            gameOver();
             break;
         }
     }
@@ -54,8 +54,55 @@ let click = (color) => {
     elementColor(color).classList.add(`selected`);
 
     setTimeout(() => {
-        elementColor(color).classList.remove(`selected`)
+        elementColor(color).classList.remove(`selected`);
+        checkOrder();
     }, 250)
 
-    checkOrder();
+    
 }
+
+// retorna a cor 
+let createColorElement = (color) => {
+    if(color == 0){
+        return dgreen;
+    }else if (color == 1) {
+        return dred;
+    }  else if (color == 2) {
+        return dyellow;
+    }  else if (color == 3) {
+        return dblue;
+    }
+}
+
+// gamecontrol
+
+let nextLevel = () => {
+    score++;
+    shuffleOrder();
+}
+
+let gameOver = () => {
+    alert(`score: ${score} \n vocë perdeu o jogo.`);
+    order = [];
+    clickedOrder = [];
+    
+    playGame();
+}
+
+let playGame = () => {
+    score = 0;
+
+    nextLevel();
+}
+
+// dgreen.addEventListener('click', click(0))
+// dred.addEventListener('click', click(1))
+// dyellow.addEventListener('click', click(2))
+// dblue.addEventListener('click', click(3))
+
+dgreen.onclick = () => click[0];
+dred.onclick = () => click[1];
+dyellow.onclick = () => click[2];
+dblue.onclick = () => click[3];
+
+playGame();
