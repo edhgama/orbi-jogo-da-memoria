@@ -9,6 +9,7 @@ const dred = document.querySelector('.dred')
 const dyellow = document.querySelector('.dyellow')
 const dgreen = document.querySelector('.dgreen')
 
+// cria ordem aleatoria
 let shuffleOrder = () => {
     let colorOrder = Math.floor(Math.random) * 4;
     order[order.length] = colorOrder;
@@ -21,6 +22,7 @@ let shuffleOrder = () => {
 
 }
 
+// poe destaque no elemento 
 let lightColor = (element, tempo) => {
     tempo = tempo * 500;
     setTimeout(()=>{
@@ -29,4 +31,31 @@ let lightColor = (element, tempo) => {
     setTimeout(()=>{
         element.classList.remove('selected');
     }, tempo - 250)    
+}
+
+let checkOrder = () => {
+    for(let inc in clickedOrder){
+        if(clickedOrder[inc] != order[i]){
+            lose();
+            break;
+        }
+    }
+    if(clickedOrder.length == order.length){
+        alert(`Pontuação ${score}`)
+        nextLevel();
+    }
+
+
+}
+
+// funcao click usuario
+let click = (color) => {
+    clickedOrder[clickedOrder.length] = color;
+    elementColor(color).classList.add(`selected`);
+
+    setTimeout(() => {
+        elementColor(color).classList.remove(`selected`)
+    }, 250)
+
+    checkOrder();
 }
