@@ -15,7 +15,7 @@ body{
     grid-template-areas: 'dgreen dred'
     'dyellow dblue';
     grid-gap: 10px;
-    border: 1px solid #FFFF;
+    border: 1px solid #FFF;
     background-color: #FFF;
     border-radius: 100%;
     width: 700px;
@@ -48,6 +48,6 @@ body{
     border-top-left-radius: 100%;
 }
 
-.select {
+.selected {
     opacity: 0.8;
 }

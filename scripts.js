@@ -11,23 +11,23 @@ const dgreen = document.querySelector('.dgreen')
 
 // cria ordem aleatoria
 let shuffleOrder = () => {
-    let colorOrder = Math.floor(Math.random) * 4;
+    let colorOrder = Math.floor(Math.random() * 4) ;
     order[order.length] = colorOrder;
     clickedOrder = [];
 
     for (let inc in order) {
-        let elementColor = createColorElement(order(inc))
-        lightColor(elementorColor, number(inc+1));
+        let elementColor = createColorElement(order[inc])
+        lightColor(elementColor, Number(inc)+1);
     }
 
 }
 
-// poe destaque no elemento 
+// acende prox cor 
 let lightColor = (element, tempo) => {
-    tempo = tempo * 500;
+    tempo = tempo * 1000;
     setTimeout(()=>{
         element.classList.add('selected');
-    }, tempo -250)
+    }, tempo - 250)
     setTimeout(()=>{
         element.classList.remove('selected');
     }, tempo - 250)    
@@ -35,7 +35,7 @@ let lightColor = (element, tempo) => {
 
 let checkOrder = () => {
     for(let inc in clickedOrder){
-        if(clickedOrder[inc] != order[i]){
+        if(clickedOrder[inc] != order[inc]){
             gameOver();
             break;
         }
@@ -51,10 +51,10 @@ let checkOrder = () => {
 // funcao click usuario
 let click = (color) => {
     clickedOrder[clickedOrder.length] = color;
-    elementColor(color).classList.add(`selected`);
+    createColorElement(color).classList.add('selected');
 
     setTimeout(() => {
-        elementColor(color).classList.remove(`selected`);
+        createColorElement(color).classList.remove('selected');
         checkOrder();
     }, 250)
 
@@ -65,7 +65,7 @@ let click = (color) => {
 let createColorElement = (color) => {
     if(color == 0){
         return dgreen;
-    }else if (color == 1) {
+    }  else if (color == 1) {
         return dred;
     }  else if (color == 2) {
         return dyellow;
@@ -91,6 +91,7 @@ let gameOver = () => {
 
 let playGame = () => {
     score = 0;
+    alert('Bem vindo ao Gênesis! Iniciando novo jogo!');
 
     nextLevel();
 }
@@ -100,9 +101,9 @@ let playGame = () => {
 // dyellow.addEventListener('click', click(2))
 // dblue.addEventListener('click', click(3))
 
-dgreen.onclick = () => click[0];
-dred.onclick = () => click[1];
-dyellow.onclick = () => click[2];
-dblue.onclick = () => click[3];
+dgreen.onclick = () => click(0);
+dred.onclick = () => click(1);
+dyellow.onclick = () => click(2);
+dblue.onclick = () => click(3);
 
 playGame();
